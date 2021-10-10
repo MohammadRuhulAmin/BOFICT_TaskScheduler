@@ -92,8 +92,8 @@
                     employeeList  += "<td>" + value.bofid + "</td>"
                     employeeList  += "<td>" + value.name + "</td>"
                     employeeList  += "<td>" + value.designation + "</td>"
-                    employeeList +="<td>"+ "<button class='btn btn-sm btn-primary mr-2' onclick='editEmployeeInformation("+value.id+")'>Edit</button>" 
-                    employeeList += "<button class='btn btn-sm btn-danger mr-2' onclick='deleteEmployee("+value.id+")' >Delete</button>" +"</td>"
+                    employeeList +="<td>"+ "<button class='btn btn-sm btn-primary mr-2' onclick='editEmployeeInformation("+value.id+")'> <i class='fas fa-edit'></i></button>" 
+                    employeeList += "<button class='btn btn-sm btn-danger mr-2' onclick='deleteEmployee("+value.id+")'><i class='fas fa-trash-alt'></i> </button>" +"</td>"
                     employeeList += "</tr>";
 
                 })

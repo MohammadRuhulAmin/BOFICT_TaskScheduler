@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\http\Controllers\Admin\EmployeeController;
+use App\http\Controllers\Admin\CommonTaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+
+Route::get('/redirects',[CommonTaskController::class,'redirectUser']); 
+
+Route::middleware(['auth:sanctum'])->group(function(){
+     Route::prefix('admin')->group(function(){
+        Route::resource('employees',EmployeeController::class);
+      });
+  });
+
+
+
+Route::get('/user/logout',[CommonTaskController::class,'logout'])->name('commonTask.logout');
+  

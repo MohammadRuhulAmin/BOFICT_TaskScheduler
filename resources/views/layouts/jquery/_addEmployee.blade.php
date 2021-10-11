@@ -17,27 +17,49 @@
         $('#employeeNameError').text('');
         $('#employeeDesignationError').text('');
         $('#employeeIdError').text('');
+        $('#employeeImage').val('')
     }
     
     // function add employee
     function addNewEmployee(){
-        var employeeName = $('#employeeName').val();
-        var employeeDesignation = $('#employeeDesignation').val();
-        var employeeId = $('#employeeId').val();
+        // var employeeImage = $('#employeeImage').val()
+        var employeeName = $('#employeeName').val()
+        var employeeDesignation = $('#employeeDesignation').val()
+        var employeeId = $('#employeeId').val()
         console.log(employeeName)
         console.log(employeeDesignation)
         console.log(employeeId)
-        let _token   = $('meta[name="csrf-token"]').attr('content');
+        console.log(employeeImage)
+        let _token   = $('meta[name="csrf-token"]').attr('content') 
+        // image upload 
+        // Get the selected file
+            var employeeImage = $('#employeeImage')[0].files;
+            var employeeFormData  = new FormData();
+            // Append data 
+            employeeFormData.append('employeeImage',employeeImage[0]);
+            employeeFormData.append('employeeName',employeeName);
+            employeeFormData.append('employeeDesignation', employeeDesignation);
+            employeeFormData.append('employeeId',employeeId);
+            employeeFormData.append('_token',_token);
+
+        //end image upload
+        
         $.ajax({
             type:"POST",
             dataType:"json",
-            data:{
-                employeeName : employeeName,
-                employeeDesignation :employeeDesignation,
-                employeeId:employeeId , 
-                _token:_token , 
+            contentType: false,
+            processData: false,
+            // data:{
+                  
+            //     employeeImage:employeeImage,
+            //     employeeName : employeeName, 
+            //     employeeDesignation :employeeDesignation, 
+            //     employeeId:employeeId ,
+            //     _token:_token, 
                 
-            },
+            // },
+            data:employeeFormData,
+           
             url:"{{route('employees.store')}}",
             success:function(data){
                 clearInputField();
@@ -88,14 +110,15 @@
                 $.each(response,function(key,value){
                     employeeList  += "<tr>"
                     employeeList  += "<td>" + value.id + "</td>"
-                    employeeList  += "<td>" + value.image + "</td>"
+                    // '<img src="{{asset(Storage::url('storage'))}}/'+value.image+'" width="64px">';
+                    //{{asset('storage/')}}"+value.image+'
+                    employeeList  += "<td>" +'<img src="{{asset('storage')}}/'+value.image+'"  width="64px">' + "</td>"
                     employeeList  += "<td>" + value.bofid + "</td>"
                     employeeList  += "<td>" + value.name + "</td>"
                     employeeList  += "<td>" + value.designation + "</td>"
                     employeeList +="<td>"+ "<button class='btn btn-sm btn-primary mr-2' onclick='editEmployeeInformation("+value.id+")'> <i class='fas fa-edit'></i></button>" 
                     employeeList += "<button class='btn btn-sm btn-danger mr-2' onclick='deleteEmployee("+value.id+")'><i class='fas fa-trash-alt'></i> </button>" +"</td>"
                     employeeList += "</tr>";
-
                 })
                 $('#employeeTableBody').html(employeeList)
             }
@@ -147,8 +170,8 @@
                 showAllEmployeeList()
                 $('#addEmployeeButton').show()
                 $('#updateEmployeeButton').hide()
-                $('#labelEmployeeAdd').show();
-                $('#labelEmployeeUpdate').hide();
+                $('#labelEmployeeAdd').show()
+                $('#labelEmployeeUpdate').hide()
                 console.log(response);
                 Swal.fire({
                     toast:true,

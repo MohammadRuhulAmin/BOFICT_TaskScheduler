@@ -37,17 +37,29 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request,[
             'employeeName' =>'required',
             'employeeDesignation' =>'required',
             'employeeId' =>'required'
         ]);
-        $data = Employee::insert([
-            'name' => $request->employeeName,
-            'designation' =>$request->employeeDesignation,
-            'bofid' => $request->employeeId
-        ]);
-        return response() ->json($data);
+
+
+        
+        $employee = new Employee();
+        $employee->name = $request->employeeName;
+        $employee->designation = $request->employeeDesignation;
+        $employee->bofid = $request->employeeId;
+        
+
+        if($request->hasFile('employeeImage')){
+            $image = $request->file('employeeImage');
+            $fileName = time().'.'.$image->getClientOriginalExtension();
+            $request->employeeImage->move('storage/',$fileName); 
+            $employee->image = $fileName;
+        }
+        $employee->save();
+        return response()->json($employee);
     }
 
     /**

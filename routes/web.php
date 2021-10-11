@@ -36,3 +36,4 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 Route::get('/user/logout',[CommonTaskController::class,'logout'])->name('commonTask.logout');
   
+//http://localhost:8000/admin/employees/create

@@ -51,6 +51,7 @@
                 </div>
             </div>
             <div class="col-sm-4" >
+              {{-- <form  enctype="multipart/form-data"> --}}
                 <div class="card">
                     <div class="card-header">
                         <span id="labelEmployeeAdd">Add New Employee </span>
@@ -74,8 +75,8 @@
                         </div>
                         <div class="form-group">
                             <label> Image  </label>
-                            <input type="file" class="form-control"  />
-                            <span class="text-danger" ></span>
+                            <input type="file" class="form-control" name="employeeImage" id="employeeImage"/>
+                           
                         </div>
                          <input type="hidden"  id="id">
                         <div>
@@ -84,7 +85,7 @@
                         </div>
                     </div>
                 </div>
-
+              {{-- </form> --}}
             </div>
         </div>
     </div>

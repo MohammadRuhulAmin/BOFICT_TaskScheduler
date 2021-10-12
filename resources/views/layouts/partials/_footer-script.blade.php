@@ -33,5 +33,12 @@
           allowClear: true
       });
 </script>
+<script>
+    $("#selectTask").select2({
+          placeholder: "Select Task",
+          allowClear: true
+      });
+</script>
+
 
 

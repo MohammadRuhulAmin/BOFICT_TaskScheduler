@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Employee;
-
+use App\Models\Admin\Task;
+use App\Models\Admin\Assigntask;
+use RealRashid\SweetAlert\Facades\Alert;
 class TaskScheduleController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class TaskScheduleController extends Controller
     public function index()
     {
         $employees = Employee::all();
-        return view('admin.tasks.operation',compact('employees'));
+        $tasks     = Task::all();
+        return view('admin.tasks.operation',compact('employees','tasks'));
     }
 
     /**
@@ -37,7 +40,26 @@ class TaskScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employeeName = $request->employeeName;
+        $taskList     = $request->taskList;
+        $dateList     = $request->dateList;
+        $timeList     = $request->timeList;
+
+        
+        $workLength = count($taskList);
+        for($i = 0;$i!=$workLength ;$i++){
+            $assignTask = new Assigntask();
+            $assignTask->employeeName = $employeeName;
+            $assignTask->task  = $taskList[$i];
+            $assignTask->time = $timeList[$i];
+            $assignTask->date = $dateList[$i];
+            $assignTask->save();
+        }
+
+
+        Alert::success('Employee', 'Has Been Assigned To the Task Successfully! ');
+        return back();
+        
     }
 
     /**

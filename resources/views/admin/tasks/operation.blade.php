@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+@include('layouts.jquery._addNewDynamicTask')
 <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
@@ -24,45 +25,40 @@
     <div class="container">
         <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories </marquee></h2>
         <div class="row">
-            <div class="col-sm-6">
-                <div class="card card-primary">
-                    <div class="card-header">
-                      <p>Select Employee</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group"> 
-                            <label> Select   Employee  <span class="text-danger"> *</span> </label>
-                            <select class="form-control"  id="selectEmployee"  >
-                                <option></option>
-                                @foreach ($employees as $employee )
-                                    <option>{{$employee->name}}</option>
-                                @endforeach
-                            </select>
-                           
-                            <span class="text-danger" id="employeeNameError">  </span>
+         
+            <div class="col-sm-12">
+              <form action="{{route('tasks.store')}}" method="POST">
+                @csrf
+              <div class="card card-primary">
+                  <div class="card-header">
+                    <p>Task Schedule</p>
+                  </div>
+                  <div class="card-body">
+                  <div class="form-group">
+                          <div class="row">
+                              <div class="col-sm-8">
+                                <label> Select   Employee  <span class="text-danger">*</span> </label>
+                                <select class="form-control"  id="selectEmployee" name="employeeName">
+                                    <option></option>
+                                    @foreach ($employees as $employee )
+                                        <option>{{$employee->name}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger" id="employeeNameError">  </span>
+                              </div>
+                              <div class="col-sm-4">
+                                <button class="btn  btn-success float-right"   id="addDynamicTaskInput" > <i class="fas fa-plus"></i> Add Task  Schedule  </button>
+                              </div>
+                          </div>
                         </div>
-                        <div class="form-control">
-                          <label> Select Task </label> 
-                          
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6" >
-                
-                <div class="card card-primary">
-                   <div class="card-header"> <p>  Assign Task    </p> </div>
-                    <div class="card-body">
-                       <div id="employeeDetails"> </div>
-                        
-                        
-                        
-                        
-                     
-                    </div>
-                </div>
-              
-            </div>
+                     <div class="form-group" id="dynamic_fieldInput"></div>
+                     <button type="submit" class="btn btn-success"> <i class="fas fa-save"></i>  Save  </button>
+                    
+                  </div>
+                  {{-- end --}}
+              </div>
+            </form>
+          </div>
         </div>
     </div>
  </div>

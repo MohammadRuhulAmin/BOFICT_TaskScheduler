@@ -12,7 +12,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#"> Home  </a></li>
-            <li class="breadcrumb-item active">Employee List   </li>
+            <li class="breadcrumb-item active"> Employee List </li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,7 +26,7 @@
         <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories </marquee></h2>
         <div class="row">
             <div class="col-sm-8">
-                <div class="card">
+                <div class="card card-primary">
                     <div class="card-header">
                         All Employee List 
                     </div>
@@ -34,7 +34,6 @@
                         <table class="table table-bordered datatable">
                             <thead>
                                 <tr>
-                                   
                                     <th scope="col"> # </th>
                                     <th scope="col">Image</th>
                                     <th scope="col">BOF ID </th>
@@ -44,7 +43,6 @@
                                 </tr>
                             </thead>
                             <tbody id="employeeTableBody">
-                           
                             </tbody>
                         </table>
                     </div>
@@ -52,7 +50,7 @@
             </div>
             <div class="col-sm-4" >
               {{-- <form  enctype="multipart/form-data"> --}}
-                <div class="card">
+                <div class="card card-primary">
                     <div class="card-header">
                         <span id="labelEmployeeAdd">Add New Employee </span>
                         <span id="labelEmployeeUpdate">Update Employee Information </span>

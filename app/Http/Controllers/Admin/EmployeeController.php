@@ -42,16 +42,11 @@ class EmployeeController extends Controller
             'employeeName' =>'required',
             'employeeDesignation' =>'required',
             'employeeId' =>'required'
-        ]);
-
-
-        
+        ]);    
         $employee = new Employee();
         $employee->name = $request->employeeName;
         $employee->designation = $request->employeeDesignation;
         $employee->bofid = $request->employeeId;
-        
-
         if($request->hasFile('employeeImage')){
             $image = $request->file('employeeImage');
             $fileName = time().'.'.$image->getClientOriginalExtension();
@@ -81,11 +76,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-       
         $data = Employee::findOrFail($id);
         return response()->json($data);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -95,17 +88,24 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $this->validate($request,[
             'employeeName' =>'required',
             'employeeDesignation' =>'required',
             'employeeId' =>'required'
         ]);
-        $data = Employee::findOrFail($id)->update([
-            'name' => $request->employeeName,
-            'designation' =>$request->employeeDesignation,
-            'bofid' => $request->employeeId
-        ]);
-        return response() ->json($data);
+        $employee = Employee::findOrFail($id);
+        $employee->name = $request->employeeName;
+        $employee->designation = $request->employeeDesignation;
+        $employee->bofid = $request->employeeId;
+        if($request->hasFile('employeeImage')){
+            $image = $request->file('employeeImage');
+            $fileName = time().'.'.$image->getClientOriginalExtension();
+            $request->employeeImage->move('storage/',$fileName);
+            $employee->image = $fileName;
+        }
+        $employee->save();
+        return response() ->json($employee);
     }
 
     /**

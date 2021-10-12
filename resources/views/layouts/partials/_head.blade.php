@@ -19,6 +19,17 @@
   <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
  
+
+   {{-- jquery Select2 option  start --}}
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+   <style>
+    .select2-container--default .select2-selection--single{
+      background-color:#fff;
+      border: 1px solid #aaa;
+      border-radius:4px;
+      height:38px!important;
+    }
+  </style>
   {{-- sweet alert --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 @stack('css')

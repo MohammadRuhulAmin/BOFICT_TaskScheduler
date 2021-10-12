@@ -11,6 +11,8 @@
 <script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{asset('js/popper.js')}}"></script>
 
+{{-- admin Opertation --}}
+
 {{-- sweet alert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -21,6 +23,15 @@
         "autoWidth":false,
     });
     
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+  
+    $("#selectEmployee").select2({
+          placeholder: "Select Employee",
+          allowClear: true
+      });
 </script>
 
 

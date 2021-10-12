@@ -44,15 +44,34 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('employees.index')}}" class="nav-link">
+                <a href="{{route('employees.create')}}" class="nav-link">
                   <i class="nav-icon fas fa-tree"></i>
                   <p>
                     Assign Employee
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-                </ul>
+                
+              </li>
+              <li class="nav-item">
+                <a href="{{route('tasks.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-tree"></i>
+                  <p>
+                    Assign Task 
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                
+              </li>
+              <li class="nav-item">
+                <a href="{{route('assigntasks.create')}}" class="nav-link">
+                  <i class="nav-icon fas fa-tree"></i>
+                  <p>
+                    Design Task 
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                
               </li>
 
               

@@ -1,4 +1,5 @@
 <script>
+    
      $.ajaxSetup({
              headers:{
                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -49,17 +50,7 @@
             dataType:"json",
             contentType: false,
             processData: false,
-            // data:{
-                  
-            //     employeeImage:employeeImage,
-            //     employeeName : employeeName, 
-            //     employeeDesignation :employeeDesignation, 
-            //     employeeId:employeeId ,
-            //     _token:_token, 
-                
-            // },
             data:employeeFormData,
-           
             url:"{{route('employees.store')}}",
             success:function(data){
                 clearInputField();
@@ -110,8 +101,7 @@
                 $.each(response,function(key,value){
                     employeeList  += "<tr>"
                     employeeList  += "<td>" + value.id + "</td>"
-                    // '<img src="{{asset(Storage::url('storage'))}}/'+value.image+'" width="64px">';
-                    //{{asset('storage/')}}"+value.image+'
+                   
                     employeeList  += "<td>" +'<img src="{{asset('storage')}}/'+value.image+'"  width="64px">' + "</td>"
                     employeeList  += "<td>" + value.bofid + "</td>"
                     employeeList  += "<td>" + value.name + "</td>"
@@ -139,6 +129,7 @@
             $('#employeeName').val(data.name)
             $('#employeeDesignation').val(data.designation)
             $('#employeeId').val(data.bofid)
+            
             $('#addEmployeeButton').hide()
             $('#updateEmployeeButton').show()
             $('#labelEmployeeAdd').hide();
@@ -146,9 +137,7 @@
         }
     })
     }
-
     // function update employee Information 
-
     function updateEmployeeInformation(){
         var id = $('#id').val()
         var employeeName = $('#employeeName').val()
@@ -198,9 +187,7 @@
                     }
             }
         })
-
     }
-
     // function delete employee
     function deleteEmployee(id){
         let _token   = $('meta[name="csrf-token"]').attr('content');
@@ -238,15 +225,7 @@
                     }
                     
                 })
-        
-        
+           
     }
-
-
-   
-
-
-
-   
 
 </script>

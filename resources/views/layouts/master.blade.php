@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Main Footer -->
   @include('layouts.jquery._addEmployee')
+  @include('layouts.jquery._addTask')
   @include('layouts.partials._footer')
 </div>
 <!-- ./wrapper -->
@@ -38,7 +39,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-    @include('layouts.partials._footer-script')
   
+  @include('layouts.partials._footer-script')
+   
 </body>
 </html>

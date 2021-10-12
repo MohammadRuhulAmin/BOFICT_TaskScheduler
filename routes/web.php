@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\Admin\EmployeeController;
 use App\http\Controllers\Admin\CommonTaskController;
-
+use App\Http\Controllers\Admin\TaskScheduleController;
+use App\Http\Controllers\Admin\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,11 +30,11 @@ Route::get('/redirects',[CommonTaskController::class,'redirectUser']);
 Route::middleware(['auth:sanctum'])->group(function(){
      Route::prefix('admin')->group(function(){
         Route::resource('employees',EmployeeController::class);
+        Route::resource('tasks',TaskScheduleController::class);
+        Route::resource('assigntasks',TaskController::class);
       });
   });
 
 
 
 Route::get('/user/logout',[CommonTaskController::class,'logout'])->name('commonTask.logout');
-  
-//http://localhost:8000/admin/employees/create

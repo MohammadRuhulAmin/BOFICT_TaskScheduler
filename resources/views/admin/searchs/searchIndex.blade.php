@@ -33,7 +33,7 @@
                         @endforeach
                     </select>
                 </div>
-
+                <span class="text-success" id="employeeNameError"></span>
             </div>
             <div class="col-sm-4">
                 <label> From Date </label>

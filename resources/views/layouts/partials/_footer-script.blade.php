@@ -11,6 +11,15 @@
 <script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{asset('js/popper.js')}}"></script>
 
+{{-- datatables --}}
+<script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+
+
 {{-- admin Opertation --}}
 
 {{-- sweet alert --}}
@@ -46,6 +55,12 @@
           placeholder: "Select Employee",
           allowClear: true
       });
+</script>
+<script>
+    $(".datatable").DataTable({
+        "responsive":true,
+        "autoWidth":false,
+    })
 </script>
 
 

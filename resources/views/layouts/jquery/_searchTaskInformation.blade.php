@@ -1,15 +1,18 @@
 <script>
-   function searchEmployeeTaskInformation(){
-
-        function clearError(){
+    function clearError(){
             $('#fromDateError').text('')
             $('#toDateError').text('')
-        }
-        clearError()
+            $('#employeeNameError').text('')
+    }
+    clearError()
+   function searchEmployeeTaskInformation(){
+
         var employeeName = $('#employeeName').val()
         var fromDate  = $('#fromDate').val()
         var toDate    = $('#toDate').val()
+    
         
+
         let _token   = $('meta[name="csrf-token"]').attr('content');
        
         $.ajax({
@@ -46,6 +49,9 @@
                 }
                 if($('#fromDate').val() == ""){
                     $('#fromDateError').text(error.responseJSON.errors.fromDate)
+                }
+                if($('#employeeName').val() == ""){
+                    $('#employeeNameError').text(error.responseJSON.errors.employeeName)
                 }
                 
             }

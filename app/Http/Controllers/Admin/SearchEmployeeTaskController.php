@@ -18,6 +18,12 @@ class SearchEmployeeTaskController extends Controller
         $fromDate  = $request->fromDate;
         $toDate   = $request->toDate;
 
+        if($employeeName === null && $fromDate === null && $toDate === null){
+            $this->validate($request,[
+                'employeeName' =>'required',
+            ]);
+        }
+
         if($fromDate !==null && $toDate === null){
             $this->validate($request,[
                 'toDate'=>'required'

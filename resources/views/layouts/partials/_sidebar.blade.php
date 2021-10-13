@@ -28,6 +28,7 @@
           </div>
         </div>
       </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -61,7 +62,6 @@
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                
               </li>
               <li class="nav-item">
                 <a href="{{route('assigntasks.create')}}" class="nav-link">
@@ -71,8 +71,18 @@
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                
               </li>
+              
+              <li class="nav-item">
+                <a href="{{route('search.view')}}"class="nav-link">
+                  <i class="nav-icon fas fa-tree"></i>
+                  <p>
+                     Search Task 
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+              </li>
+              
 
               
               </li>

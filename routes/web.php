@@ -5,6 +5,9 @@ use App\http\Controllers\Admin\EmployeeController;
 use App\http\Controllers\Admin\CommonTaskController;
 use App\Http\Controllers\Admin\TaskScheduleController;
 use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\SearchEmployeeTaskController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,16 +28,17 @@ Route::get('/', function () {
 // })->name('dashboard');
 
 
-Route::get('/redirects',[CommonTaskController::class,'redirectUser']); 
 
+Route::get('/redirects',[CommonTaskController::class,'redirectUser']); 
 Route::middleware(['auth:sanctum'])->group(function(){
      Route::prefix('admin')->group(function(){
-        Route::resource('employees',EmployeeController::class);
-        Route::resource('tasks',TaskScheduleController::class);
-        Route::resource('assigntasks',TaskController::class);
+     Route::resource('employees',EmployeeController::class);
+     Route::resource('tasks',TaskScheduleController::class);
+     Route::resource('assigntasks',TaskController::class);
+     Route::get('assigntasks/search-employee-work-details',[TaskController::class,'employeeTaskListViewPage'])->name('assigntasks.viewEmplyTaskSearch');
       });
+      // Route Search Employee Information controller 
+    Route::get('/admin/search-task',[SearchEmployeeTaskController::class,'searchindex'])->name('search.view');
+    Route::post('/admin/search-task/',[SearchEmployeeTaskController::class,'employeeSearchTaskResult'])->name('search.sendRequest');
   });
-
-
-
 Route::get('/user/logout',[CommonTaskController::class,'logout'])->name('commonTask.logout');

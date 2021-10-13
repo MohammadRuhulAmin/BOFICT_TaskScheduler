@@ -33,6 +33,18 @@
                   <div class="card-header">
                     <p>Task Schedule</p>
                   </div>
+                  <div>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li> {{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                  </div>
+                
                   <div class="card-body">
                   <div class="form-group">
                           <div class="row">
@@ -44,6 +56,9 @@
                                         <option>{{$employee->name}}</option>
                                     @endforeach
                                 </select>
+                                @if($errors->has('employeeName'))
+                                    <span class="text-danger">{{$errors->first('employeeName')}} </span>
+                                @endif
                                 <span class="text-danger" id="employeeNameError">  </span>
                               </div>
                               <div class="col-sm-4">
@@ -62,6 +77,10 @@
         </div>
     </div>
  </div>
+
+ <div>
+
+</div>
   <!-- /.content -->
     
   

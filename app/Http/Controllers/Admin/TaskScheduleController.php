@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Employee;
@@ -30,8 +28,8 @@ class TaskScheduleController extends Controller
     public function create()
     {
         //
-    }
 
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -40,6 +38,12 @@ class TaskScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'employeeName' =>'required',
+            'taskList' =>'required',
+            'timeList' => 'required',
+        ]);
+
         $employeeName = $request->employeeName;
         $taskList     = $request->taskList;
         $dateList     = $request->dateList;
@@ -81,7 +85,7 @@ class TaskScheduleController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

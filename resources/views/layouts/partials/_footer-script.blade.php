@@ -40,5 +40,13 @@
       });
 </script>
 
+<script type="text/javascript">
+  
+    $(".selectEmployee").select2({
+          placeholder: "Select Employee",
+          allowClear: true
+      });
+</script>
+
 
 

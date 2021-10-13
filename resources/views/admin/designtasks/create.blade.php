@@ -31,7 +31,7 @@
                         All Task  List 
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered datatable">
+                        <table class="table table-sm table-bordered table-striped datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">  #  </th>

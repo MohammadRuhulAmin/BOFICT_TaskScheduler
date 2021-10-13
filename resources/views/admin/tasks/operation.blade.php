@@ -8,7 +8,6 @@
         <div class="col-sm-6">
           <h1 class="m-0"> Task Control  </h1>
           <br>
-         
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">

@@ -6,6 +6,7 @@ use App\http\Controllers\Admin\CommonTaskController;
 use App\Http\Controllers\Admin\TaskScheduleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\SearchEmployeeTaskController;
+use App\Http\Controllers\Admin\DashboardController;
 
 
 /*
@@ -32,6 +33,7 @@ Route::get('/', function () {
 Route::get('/redirects',[CommonTaskController::class,'redirectUser']); 
 Route::middleware(['auth:sanctum'])->group(function(){
      Route::prefix('admin')->group(function(){
+     Route::get('dashboard/employee-today-Task',[DashBoardController::class,'todayEmployeeTask'])->name('dashboard.todayTask');
      Route::resource('employees',EmployeeController::class);
      Route::resource('tasks',TaskScheduleController::class);
      Route::resource('assigntasks',TaskController::class);

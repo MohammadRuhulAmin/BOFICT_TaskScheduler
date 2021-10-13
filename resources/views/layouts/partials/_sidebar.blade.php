@@ -45,6 +45,17 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{{route('dashboard.todayTask')}}"  class="nav-link">
+                  <i class="nav-icon fas fa-tree"></i>
+                  <p>
+                    Dashboard
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                
+              </li>
+
+              <li class="nav-item">
                 <a href="{{route('employees.create')}}" class="nav-link">
                   <i class="nav-icon fas fa-tree"></i>
                   <p>

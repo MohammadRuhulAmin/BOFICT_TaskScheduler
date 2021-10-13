@@ -29,6 +29,7 @@ class DashboardController extends Controller
                 'taskDetails' => $taskDetails,
             ];
         }
+        //return count($combineAllInformation);
         //return $combineAllInformation[0]['taskList']['employeeName'];
        
         

@@ -8,7 +8,7 @@
         event.preventDefault();
            i++;  
            $('#dynamic_fieldInput').append(
-            `<div class='row'>
+            `<div class='row' id='row_${i}'>
                 <div class='col-sm-6'>
                     <select class='form-control' name='taskList[]' id='searchableSelectOption_'+'i'>
                     @foreach ($tasks as $task )
@@ -21,8 +21,20 @@
                <div class='col-sm-1'>
                 <input type='time' name='endTimeList[]'  class='form-control'>
                </div>
+               <div class='col-sm-1'>
+                <button type="button" name="remove" id='${i}'  class="btn btn-danger btn_remove"><i class='fas fa-trash'></i></button>
+                </div>
            </div>`);
           
+       })
+      
+       $(document).on('click','.btn_remove',function(){
+           console.log("ok !! ")
+           var deleteButtonId = $(this).attr("id")
+           console.log("row_"+deleteButtonId)
+           $('#row_'+deleteButtonId).remove();
+           
+           
        })
 
       
@@ -32,4 +44,3 @@
 
 </script>
 {{-- $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>'); --}} 
-{{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove"><i class='fas fa-trash'></i></button> --}}

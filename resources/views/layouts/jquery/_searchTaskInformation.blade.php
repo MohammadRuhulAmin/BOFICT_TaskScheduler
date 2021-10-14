@@ -10,9 +10,6 @@
         var employeeName = $('#employeeName').val()
         var fromDate  = $('#fromDate').val()
         var toDate    = $('#toDate').val()
-    
-        
-
         let _token   = $('meta[name="csrf-token"]').attr('content');
        
         $.ajax({
@@ -35,7 +32,8 @@
                     taskList  += "<td>" + value.employeeName + "</td>"
                     taskList  += "<td>" + value.task + "</td>"
                     taskList  += "<td>" + value.date + "</td>"
-                    taskList  += "<td>" + value.time + "</td>"
+                    taskList  += "<td>" + value.startTime + "</td>"
+                    taskList  += "<td>" + value.endTime + "</td>"
                     //employeeList +="<td>"+ "<button class='btn btn-sm btn-primary mr-2' onclick='editEmployeeInformation("+value.id+")'> <i class='fas fa-edit'></i></button>" 
                     //employeeList += "<button class='btn btn-sm btn-danger mr-2' onclick='deleteEmployee("+value.id+")'><i class='fas fa-trash-alt'></i> </button>" +"</td>"
                     taskList += "</tr>";

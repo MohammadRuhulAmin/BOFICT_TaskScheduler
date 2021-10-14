@@ -15,8 +15,8 @@ class DashboardController extends Controller
         //return  $dt->format('Y-m-d H:i:s');
         $date  = new DateTime();
         $todayDate =  $date->format('Y-m-d');
-        $taskList = Assigntask::where(['date' =>$todayDate])->get();
-        //return $taskList;
+        $taskList = Assigntask::where(['date' =>$todayDate])->orderBy('created_at','DESC')->get();
+        
         $combineAllInformation = [];
         for($i = 0;$i<count($taskList);$i++){
             $employeeName = $taskList[$i]->employeeName;

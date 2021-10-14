@@ -17,9 +17,9 @@
                     </select>
                 </div>
                 <div class='col-sm-3'> <input type='date' name='dateList[]'  class='form-control'> </div>
-                <div class='col-sm-2'> <input type='time' name='timeList[]'  class='form-control'> </div>
+                <div class='col-sm-1'> <input type='time' name='startTimeList[]'  class='form-control'> </div>
                <div class='col-sm-1'>
-                <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove"><i class='fas fa-trash'></i></button>
+                <input type='time' name='endTimeList[]'  class='form-control'>
                </div>
            </div>`);
           
@@ -32,3 +32,4 @@
 
 </script>
 {{-- $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>'); --}} 
+{{-- <button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove"><i class='fas fa-trash'></i></button> --}}

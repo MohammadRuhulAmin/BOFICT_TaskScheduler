@@ -21,10 +21,9 @@
   <!-- /.content-header -->
  
   <!-- Main content -->
-  <div style="padding: 30px">
-    <div class="container">
+  
         {{-- <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories </marquee></h2> --}}
-        <div class="row">
+        <div class="row row-sm m-3">
             <div class="col-sm-8">
                 <div class="card card-primary">
                     <div class="card-header">
@@ -75,8 +74,6 @@
               {{-- </form> --}}
             </div>
         </div>
-    </div>
- </div>
   <!-- /.content -->
     
   

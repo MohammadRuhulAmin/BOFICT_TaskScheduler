@@ -20,10 +20,8 @@
   </div>
   <!-- /.content-header -->
   <!-- Main content -->
-  <div style="padding: 30px">
-    <div class="container">
         <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories </marquee></h2>
-        <div class="row">
+        <div class="row row-sm m-3">
          
             <div class="col-sm-12">
               <form action="{{route('tasks.store')}}" method="POST">
@@ -48,7 +46,7 @@
                   <div class="form-group">
                           <div class="row">
                               <div class="col-sm-8">
-                                <label> Select   Employee  <span class="text-danger">*</span> </label>
+                                <label> Select   Employee   <span class="text-danger">*</span> </label>
                                 <select class="form-control"  id="selectEmployee" name="employeeName">
                                     <option></option>
                                     @foreach ($employees as $employee )
@@ -77,9 +75,7 @@
     </div>
  </div>
 
- <div>
 
-</div>
   <!-- /.content -->
     
   

@@ -17,14 +17,15 @@
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-  </div>
+</div>
+
   <!-- /.content-header -->
- 
   <!-- Main content -->
-  <div style="padding: 30px">
-    <div class="container">
-        <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories </marquee></h2>
-        <div class="row">
+ 
+  
+   
+        
+        <div class="row m-3 row-sm">
             <div class="col-sm-8">
                 <div class="card card-primary">
                     <div class="card-header">
@@ -34,7 +35,7 @@
                         <table class="table table-bordered table-striped datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col"> # </th>
+                                    <th scope="col"> </th>
                                     <th scope="col">Image</th>
                                     <th scope="col">BOF ID </th>
                                     <th scope="col">Name</th>
@@ -53,7 +54,7 @@
                 <div class="card card-primary">
                     <div class="card-header">
                         <span id="labelEmployeeAdd">Add New Employee </span>
-                        <span id="labelEmployeeUpdate">Update Employee Information </span>
+                        <span id="labelEmployeeUpdate"> Update Employee Information  </span>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -86,8 +87,9 @@
               {{-- </form> --}}
             </div>
         </div>
-    </div>
- </div>
+    
+
+    
   <!-- /.content -->
     
   

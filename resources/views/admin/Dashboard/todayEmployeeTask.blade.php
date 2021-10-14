@@ -19,57 +19,59 @@
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
- 
   <!-- Main content -->
+  <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories (ICT CELL)   </marquee></h2>
   <div class="card m-3">
     <div class="card-header">
         <h3 align="center"> {{ date('Y-m-d   H:i:s') }}  Work Flow   </h3>
     </div>
     <div class="card-body">
         @for ($i = 0;$i<count($combineAllInformation);$i++)
-           <div class="card">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>{{$combineAllInformation[$i]['employeeDetails']['name']}}</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <img width="128px" src="{{url('storage/'.$combineAllInformation[$i]['employeeDetails']['image'])}}"/>
+         <div class="card">
+            <div class="card-header">
+                <p> SL {{$i+1 }} </p>
+            </div>
+            <div class="card-body">
+               <div class="card">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-primary">
+                                <div class="card-header"><p class="card-title"> {{$combineAllInformation[$i]['employeeDetails']['name']}} </p></div>
+                                <div class="card-body">
+                                   <div class="row">
+                                       <div class="col-sm-6">
+                                        <img width="128px" src="{{url('storage/'.$combineAllInformation[$i]['employeeDetails']['image'])}}"/> 
+                                       </div>
+                                       <div class="col-sm-6" >
+                                           <table class="table table-striped table-sm">
+                                                <tr>
+                                                    <td>Task : </td> <td>{{$combineAllInformation[$i]['taskList']['task']}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Details :  </td><td>{{$combineAllInformation[$i]['taskDetails']['taskDetails']}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Date  </td><td> {{$combineAllInformation[$i]['taskList']['date']}} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Start Time  </td> <td>{{$combineAllInformation[$i]['taskList']['startTime']}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>End Time  </td> <td>{{$combineAllInformation[$i]['taskList']['endTime']}}</td>
+                                                </tr>
+                                           </table>
+                                       </div>
+                                   </div>
+                                </div>
+                                <div class="card-footer">
+                                    <p>Designation :  {{$combineAllInformation[$i]['employeeDetails']['designation']}} / ID No : {{$combineAllInformation[$i]['employeeDetails']['bofid']}}</p>
                                 </div>
                             </div>
-                           
-                        </div>
-                        <div class="card-footer">
-                            <p>{{$combineAllInformation[$i]['employeeDetails']['designation']}}</p>
-                            <p>{{$combineAllInformation[$i]['employeeDetails']['bofid']}}</p>
-                        </div>
-    
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>{{$combineAllInformation[$i]['taskList']['task']}}</h3>
-                        </div>
-                        <div class="card-body">
-                            <h5>
-                                {{$combineAllInformation[$i]['taskDetails']['taskDetails']}}
-                            </h5>
-                            <h3>{{$combineAllInformation[$i]['taskList']['date']}}</h3>
-                            
-                        </div>
-                        <div class="card-footer">
-                            <h5>{{$combineAllInformation[$i]['taskList']['time']}}</h5>
                         </div>
                     </div>
-                </div>
-                
-               </div>  
-           </div>
-                         
+               </div>
+            </div>
+         </div>            
         @endfor
     </div>
     <div class="footer">
@@ -77,6 +79,4 @@
     </div>
   </div>
   <!-- /.content -->
-    
-  
 @endsection 

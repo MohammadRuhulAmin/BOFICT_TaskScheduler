@@ -41,13 +41,14 @@ class TaskScheduleController extends Controller
         $this->validate($request,[
             'employeeName' =>'required',
             'taskList' =>'required',
-            'timeList' => 'required',
+            // 'timeList' => 'required',
         ]);
 
         $employeeName = $request->employeeName;
         $taskList     = $request->taskList;
         $dateList     = $request->dateList;
-        $timeList     = $request->timeList;
+        $startTimeList     = $request->startTimeList;
+        $endTimeList   = $request->endTimeList;
 
         
         $workLength = count($taskList);
@@ -55,12 +56,11 @@ class TaskScheduleController extends Controller
             $assignTask = new Assigntask();
             $assignTask->employeeName = $employeeName;
             $assignTask->task  = $taskList[$i];
-            $assignTask->time = $timeList[$i];
+            $assignTask->startTime = $startTimeList[$i];
+            $assignTask->endTime = $endTimeList[$i];
             $assignTask->date = $dateList[$i];
             $assignTask->save();
         }
-
-
         Alert::success('Employee', 'Has Been Assigned To the Task Successfully! ');
         return back();
         

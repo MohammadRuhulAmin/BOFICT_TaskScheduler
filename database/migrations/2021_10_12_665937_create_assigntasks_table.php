@@ -18,6 +18,8 @@ class CreateAssigntasksTable extends Migration
             $table->string('employeeName',100);
             $table->string('task',300);
             $table->date('date')->nullable();
+            $table->string('location',50)->nullable();
+            $table->string('shift',50)->nullable();
             $table->time('startTime')->nullable();
             $table->time('endTime')->nullable();
             $table->timestamps();

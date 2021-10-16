@@ -21,24 +21,42 @@ class DashboardController extends Controller
         $weekEndDate = $now->endOfWeek(Carbon::FRIDAY)->format('Y-m-d');
         //  $day = Carbon::createFromFormat('Y-m-d', $weekEndDate)->format('l');
         //  return $day;
-        $combineAllWeeklyInformation = [];
-        $weeklyTaskList =  Assigntask::whereBetween('date', [$weekStartDate,$weekEndDate])->get();
-        for($i = 0;$i<count($weeklyTaskList);$i++){
-            $combineAllWeeklyInformation[$i] =[
-                'dayName' => Carbon::createFromFormat('Y-m-d', $weeklyTaskList[$i]->date)->format('l'),
-                'date'=> $weeklyTaskList[$i]->date,
-                'employeeName' =>$weeklyTaskList[$i]->employeeName,
-                'employeeImage' =>DB::table('employees')->where(['name'=>$weeklyTaskList[$i]->employeeName])->first('image'),
-                'employeeDesignation' =>DB::table('employees')->where(['name'=>$weeklyTaskList[$i]->employeeName])->first('designation'),
-                'employeeTask' =>$weeklyTaskList[$i]->task,
-                'startTime' =>$weeklyTaskList[$i]->startTime,
-                'endTime' =>$weeklyTaskList[$i]->endTime,
 
+        //first Shift Start 
+        $combineAllWeeklyInformation_shift_1 = [];
+        $weeklyTaskList_shift_1 =  Assigntask::whereBetween('date', [$weekStartDate,$weekEndDate])->where(['shift'=>'OT-1'])->get();
+        for($i = 0;$i<count($weeklyTaskList_shift_1);$i++){
+            $combineAllWeeklyInformation_shift_1[$i] =[
+                'dayName' => Carbon::createFromFormat('Y-m-d', $weeklyTaskList_shift_1[$i]->date)->format('l'),
+                'date'=> $weeklyTaskList_shift_1[$i]->date,                    
+                'employeeName' =>$weeklyTaskList_shift_1[$i]->employeeName,
+                'employeeImage' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_1[$i]->employeeName])->first('image'),
+                'employeeDesignation' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_1[$i]->employeeName])->first('designation'),
+                'employeeTask' =>$weeklyTaskList_shift_1[$i]->task,
+                'startTime' =>$weeklyTaskList_shift_1[$i]->startTime,
+                'endTime' =>$weeklyTaskList_shift_1[$i]->endTime,
+                'location'=>$weeklyTaskList_shift_1[$i]->location,
             ];
         }
-        //return $combineAllWeeklyInformation;
-        //  return $combineAllWeeklyInformation[0]['dayName'];
-        return view('admin.Dashboard.weeklyEmployeeTask',compact('combineAllWeeklyInformation'));
+        //first Shift end 
+        //Second Shift Start 
+        $combineAllWeeklyInformation_shift_2 = [];
+        $weeklyTaskList_shift_2 =  Assigntask::whereBetween('date', [$weekStartDate,$weekEndDate])->where(['shift'=>'OT-2'])->get();
+        for($i = 0;$i<count($weeklyTaskList_shift_2);$i++){
+            $combineAllWeeklyInformation_shift_2[$i] =[
+                'dayName' => Carbon::createFromFormat('Y-m-d', $weeklyTaskList_shift_2[$i]->date)->format('l'),
+                'date'=> $weeklyTaskList_shift_2[$i]->date,                    
+                'employeeName' =>$weeklyTaskList_shift_2[$i]->employeeName,
+                'employeeImage' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_2[$i]->employeeName])->first('image'),
+                'employeeDesignation' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_2[$i]->employeeName])->first('designation'),
+                'employeeTask' =>$weeklyTaskList_shift_2[$i]->task,
+                'startTime' =>$weeklyTaskList_shift_2[$i]->startTime,
+                'endTime' =>$weeklyTaskList_shift_2[$i]->endTime,
+                'location'=>$weeklyTaskList_shift_2[$i]->location,
+            ];
+        }
+        //Second Shift end 
+        return view('admin.Dashboard.weeklyEmployeeTask',compact('combineAllWeeklyInformation_shift_1','combineAllWeeklyInformation_shift_2'));
     }
 
 

@@ -49,8 +49,9 @@ class TaskScheduleController extends Controller
         $dateList     = $request->dateList;
         $startTimeList     = $request->startTimeList;
         $endTimeList   = $request->endTimeList;
+        $locationList = $request->locationList;
+        $shiftList  = $request->shiftList;
 
-        
         $workLength = count($taskList);
         for($i = 0;$i!=$workLength ;$i++){
             $assignTask = new Assigntask();
@@ -59,8 +60,11 @@ class TaskScheduleController extends Controller
             $assignTask->startTime = $startTimeList[$i];
             $assignTask->endTime = $endTimeList[$i];
             $assignTask->date = $dateList[$i];
+            $assignTask->location = $locationList[$i];
+            $assignTask->shift = $shiftList[$i];
             $assignTask->save();
         }
+        
         Alert::success('Employee', 'Has Been Assigned To the Task Successfully! ');
         return back();
         

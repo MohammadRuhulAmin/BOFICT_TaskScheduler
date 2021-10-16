@@ -20,7 +20,7 @@
         $('#employeeIdError').text('');
         $('#employeeImage').val('')
     }
-    
+   
     // function add employee
     function addNewEmployee(){
         // var employeeImage = $('#employeeImage').val()
@@ -53,10 +53,11 @@
             data:employeeFormData,
             url:"{{route('employees.store')}}",
             success:function(data){
-                clearInputField();
+                $('#employeeName').val('');
+                $('#employeeDesignation').val('');
+                $('#employeeId').val('');
                 showAllEmployeeList();
                 console.log(data);
-                 
                 Swal.fire({
                     toast:true,
                     position: 'top-end',
@@ -155,7 +156,9 @@
             },
             url:"/admin/employees/" +id, 
             success:function(response){
-                clearInputField();
+                $('#employeeName').val('');
+                $('#employeeDesignation').val('');
+                $('#employeeId').val('');
                 showAllEmployeeList()
                 $('#addEmployeeButton').show()
                 $('#updateEmployeeButton').hide()

@@ -48,7 +48,17 @@
                 <a href="{{route('dashboard.todayTask')}}"  class="nav-link">
                   <i class="nav-icon fas fa-tree"></i>
                   <p>
-                    Dashboard
+                     Today's Task
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                
+              </li>
+              <li class="nav-item">
+                <a href="{{route('dashboard.weekTask')}}"  class="nav-link">
+                  <i class="nav-icon fas fa-tree"></i>
+                  <p>
+                     Weekly Task 
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>

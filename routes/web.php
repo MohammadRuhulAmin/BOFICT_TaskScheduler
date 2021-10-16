@@ -34,6 +34,7 @@ Route::get('/redirects',[CommonTaskController::class,'redirectUser']);
 Route::middleware(['auth:sanctum'])->group(function(){
      Route::prefix('admin')->group(function(){
      Route::get('dashboard/employee-today-Task',[DashBoardController::class,'todayEmployeeTask'])->name('dashboard.todayTask');
+     Route::get('dashboard/employee-week-Task',[DashBoardController::class,'weekEmployeeTask'])->name('dashboard.weekTask');
      Route::resource('employees',EmployeeController::class);
      Route::resource('tasks',TaskScheduleController::class);
      Route::resource('assigntasks',TaskController::class);
@@ -44,3 +45,4 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/admin/search-task/',[SearchEmployeeTaskController::class,'employeeSearchTaskResult'])->name('search.sendRequest');
   });
 Route::get('/user/logout',[CommonTaskController::class,'logout'])->name('commonTask.logout');
+

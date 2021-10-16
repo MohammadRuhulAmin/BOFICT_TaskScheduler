@@ -1,16 +1,37 @@
+
 <script>
-    
     $(document).ready(function() {
+        // select 
+        // function filterFunction() {
+        //     var input, filter, ul, li, a, i;
+        //     input = document.getElementById("selectTask");
+        //     filter = input.value.toUpperCase();
+        //     div = document.getElementById("myDropdown");
+        //     a = div.getElementsByTagName("a");
+        //     for (i = 0; i < a.length; i++) {
+        //         txtValue = a[i].textContent || a[i].innerText;
+        //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //         a[i].style.display = "";
+        //         } else {
+        //         a[i].style.display = "none";
+        //         }
+        //     }
+        // }
+        // filterFunction()
+
+        //end select
+        
+        
         
         var i = 1;
-        
        $('#addDynamicTaskInput').click(function(){
         event.preventDefault();
-           i++;  
+           i++;
            $('#dynamic_fieldInput').append(
             `<div class='row' id='row_${i}'>
+                
                 <div class='col-sm-6'>
-                    <select class='form-control' name='taskList[]' id='searchableSelectOption_'+'i'>
+                    <select class='form-control' id='selectTask' name='taskList[]'>
                     @foreach ($tasks as $task )
                         <option>{{$task->taskName}} </option>
                     @endforeach
@@ -25,22 +46,19 @@
                 <button type="button" name="remove" id='${i}'  class="btn btn-danger btn_remove"><i class='fas fa-trash'></i></button>
                 </div>
            </div>`);
-          
        })
       
        $(document).on('click','.btn_remove',function(){
-           console.log("ok !! ")
            var deleteButtonId = $(this).attr("id")
            console.log("row_"+deleteButtonId)
-           $('#row_'+deleteButtonId).remove();
-           
-           
+           $('#row_'+deleteButtonId).remove();  
        })
-
+       
       
-       
-       
+        
     });
 
+
 </script>
-{{-- $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>'); --}} 
+
+

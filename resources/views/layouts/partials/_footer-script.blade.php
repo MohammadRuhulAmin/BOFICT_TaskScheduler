@@ -37,7 +37,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script type="text/javascript">
   
-    $("#selectEmployee").select2({
+     $("#selectEmployee").select2({
           placeholder: "Select Employee",
           allowClear: true
       });
@@ -48,6 +48,7 @@
           allowClear: true
       });
 </script>
+
 
 <script type="text/javascript">
   
@@ -62,6 +63,7 @@
         "autoWidth":false,
     })
 </script>
+
 
 
 

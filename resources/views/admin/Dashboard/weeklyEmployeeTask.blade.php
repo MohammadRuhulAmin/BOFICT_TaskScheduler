@@ -25,15 +25,16 @@
     <div class="card-header"><h1  class="display-3 card-title"> Shift - 1<sup>st </sup> </h1></div>
        <table class="table table-sm table-striped m-3">
            <thead>
-                <th> Day </th>
-                <th> Date </th>
+                <th> Day   </th>
+                <th> Date  </th>
                 <th> Image </th>
                 <th> Employee Name  </th>
                 <th> Employee Designation </th>
-                <th> Location  </th>
+                <th> Location </th>
                 <th> Task </th>
                 <th> In </th>
                 <th> Out </th>
+                <th> Total Time </th>
            </thead>
            <tbody>
               @for ($i = 0;$i<count($combineAllWeeklyInformation_shift_1);$i++)
@@ -47,6 +48,7 @@
                 <td>{{$combineAllWeeklyInformation_shift_1[$i]['employeeTask']}}</td>
                 <td>{{$combineAllWeeklyInformation_shift_1[$i]['startTime']}}</td>
                 <td>{{$combineAllWeeklyInformation_shift_1[$i]['endTime']}}</td>
+                <td>{{$combineAllWeeklyInformation_shift_1[$i]['totalTime']}}</td>
             </tr>
               @endfor
                    
@@ -55,7 +57,7 @@
        </table>
         
   </div>
-  
+  <br><br>
   <div class="card">
       <div class="card-header"><h1  class="card-title text-center"> Shift - 2<sup>nd</sup> </h1></div>
     <table class="table table-sm table-striped m-3">
@@ -69,6 +71,7 @@
              <th> Task </th>
              <th> In </th>
              <th> Out </th>
+             <th> Total Time </th>
         </thead>
         <tbody>
            @for ($i = 0;$i<count($combineAllWeeklyInformation_shift_2);$i++)
@@ -82,6 +85,7 @@
              <td>{{$combineAllWeeklyInformation_shift_2[$i]['employeeTask']}}</td>
              <td>{{$combineAllWeeklyInformation_shift_2[$i]['startTime']}}</td>
              <td>{{$combineAllWeeklyInformation_shift_2[$i]['endTime']}}</td>
+             <td>{{$combineAllWeeklyInformation_shift_2[$i]['totalTime']}}</td>
          </tr>
            @endfor
                 

@@ -51,18 +51,23 @@
         <button class="btn btn-primary" onclick="searchEmployeeTaskInformation()"> <i class="fas fa-search"></i> Search </button>
       </div>
   </div>
+  
   <div class="card card-primary m-3">
     <div class="card-header"> <p> Employee Task Result  </p></div>
     <div class="card-body">
-      <table class="table table-sm table-bordered table-striped">
+      <table class="table table-sm table-bordered table-striped" id="taskTableInformation">
         <thead>
             <th>#</th>  
             <th>Name</th>
             <th> Task </th>
             <th> Date </th>
+            <th> Shift </th>
+            <th> Location </th>
             <th> Start Time </th>
-            <th> End  Time </th>    
-            {{-- <th> Action </th> --}}
+            <th> End  Time </th>  
+            <th> Total Time </th>  
+            <th> Action </th>
+            
         </thead>
         <tbody id="taskListInformation">
         </tbody>
@@ -73,7 +78,9 @@
 </div>
 
 
-  
+
+
+
 
 
 

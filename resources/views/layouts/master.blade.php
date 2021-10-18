@@ -7,6 +7,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     @include('layouts.partials._head')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      .select2-container {
+    width: 100% !important;
+    padding: 0;
+}
+    </style>
  </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

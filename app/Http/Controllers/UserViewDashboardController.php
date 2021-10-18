@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use  App\Models\Admin\Assigntask;
 use App\Models\Admin\Task;
@@ -11,7 +10,7 @@ use DateTime;
 use DB;
 use Carbon\Carbon;
 
-class DashboardController extends Controller
+class UserViewDashboardController extends Controller
 {
     //Vehicle::find(3)->value('register_number');
 
@@ -58,7 +57,7 @@ class DashboardController extends Controller
             ];
         }
         //Second Shift end 
-        return view('admin.Dashboard.weeklyEmployeeTask',compact('combineAllWeeklyInformation_shift_1','combineAllWeeklyInformation_shift_2'));
+        return view('Dashboard.WeeklyDashboard',compact('combineAllWeeklyInformation_shift_1','combineAllWeeklyInformation_shift_2'));
     }
     public function todayEmployeeTask(){
         //return  $dt->format('Y-m-d H:i:s');
@@ -77,8 +76,7 @@ class DashboardController extends Controller
                 'taskDetails' => $taskDetails,
             ];
         }
-        //return count($combineAllInformation);
-        //return $combineAllInformation[0]['taskList']['employeeName'];
+       
         return view('admin.Dashboard.todayEmployeeTask')->with(['combineAllInformation'=>$combineAllInformation]);
     }
 }

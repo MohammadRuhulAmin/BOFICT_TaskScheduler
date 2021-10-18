@@ -13,7 +13,7 @@ class CreateAssigntasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('assigntasks', function (Blueprint $table) {
+        Schema::create('assigntasks', function (Blueprint $table){
             $table->id();
             $table->string('employeeName',100);
             $table->string('task',300);
@@ -22,7 +22,9 @@ class CreateAssigntasksTable extends Migration
             $table->string('shift',50)->nullable();
             $table->time('startTime')->nullable();
             $table->time('endTime')->nullable();
+            $table->time('totalTime')->nullable();
             $table->timestamps();
+        
         });
     }
 

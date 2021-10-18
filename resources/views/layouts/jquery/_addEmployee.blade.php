@@ -102,7 +102,7 @@
                 $.each(response,function(key,value){
                     employeeList  += "<tr>"
                     employeeList  += "<td>" + value.id + "</td>"
-                   
+                    
                     employeeList  += "<td>" +'<img src="{{asset('storage')}}/'+value.image+'"  width="64px">' + "</td>"
                     employeeList  += "<td>" + value.bofid + "</td>"
                     employeeList  += "<td>" + value.name + "</td>"
@@ -232,3 +232,4 @@
     }
 
 </script>
+

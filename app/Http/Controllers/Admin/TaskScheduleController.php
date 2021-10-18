@@ -6,6 +6,7 @@ use App\Models\Admin\Employee;
 use App\Models\Admin\Task;
 use App\Models\Admin\Assigntask;
 use RealRashid\SweetAlert\Facades\Alert;
+use DateTime;
 class TaskScheduleController extends Controller
 {
     /**
@@ -47,10 +48,12 @@ class TaskScheduleController extends Controller
         $employeeName = $request->employeeName;
         $taskList     = $request->taskList;
         $dateList     = $request->dateList;
-        $startTimeList     = $request->startTimeList;
+        $startTimeList = $request->startTimeList;
         $endTimeList   = $request->endTimeList;
         $locationList = $request->locationList;
         $shiftList  = $request->shiftList;
+        
+        
 
         $workLength = count($taskList);
         for($i = 0;$i!=$workLength ;$i++){
@@ -62,9 +65,18 @@ class TaskScheduleController extends Controller
             $assignTask->date = $dateList[$i];
             $assignTask->location = $locationList[$i];
             $assignTask->shift = $shiftList[$i];
+            //calculating Total Time 
+            $tempStartTime = new DateTime($startTimeList[$i]);
+            $tempEndTime   = new DateTime($endTimeList[$i]);
+            $timeInterval  = $tempStartTime->diff($tempEndTime);
+            $finalTimeInterval = $timeInterval->format('%h').':'.$timeInterval->format('%i').':'.$timeInterval->format('%s');
+            //end calculation
+            $assignTask->totalTime = $finalTimeInterval;
+            
             $assignTask->save();
         }
         
+
         Alert::success('Employee', 'Has Been Assigned To the Task Successfully! ');
         return back();
         

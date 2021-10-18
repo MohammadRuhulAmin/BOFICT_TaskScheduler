@@ -64,6 +64,21 @@
     })
 </script>
 
+<script type="text/javascript">
+  
+    $("#selectEmployee_info").select2({
+         placeholder: "Select Employee",
+         allowClear: true
+     });
+</script>
+<script>
+    
+    $(document).ready(function(){
+        $("#editingTaskInformation").hide()
+    })
+     
+</script>
+
 
 
 

@@ -53,12 +53,16 @@ class SearchEmployeeTaskController extends Controller
             return response()->json($query);
         }
         
-
-        
-        
-        
-
-
-        
     }
+    public function deleteTask($id){
+        $query = Assigntask::findOrFail($id);
+        $query->delete();
+        return response()->json($id);
+    }
+
+    public function updateTaskInformation($id){
+        $TaskDetails = Assigntask::findOrFail($id);
+        return response()->json($TaskDetails);
+    }
+
 }

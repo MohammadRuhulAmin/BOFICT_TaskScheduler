@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Task;
+use App\Models\Admin\Employee;
 
 class TaskController extends Controller
 {
@@ -26,7 +27,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('admin.designtasks.create');
+        $employees = Employee::orderby('created_at','desc')->get();
+        return view('admin.designtasks.create',compact('employees'));
     }
 
     /**

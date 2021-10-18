@@ -10,7 +10,14 @@ class Assigntask extends Model
     use HasFactory;
     protected $fillable = [
         'employeeName',
+        'task',
         'date',
-        'time'
+        'location',
+        'shift',
+        'startTime',
+        'endTime',
+        'totalTime',
     ];
 }
+
+

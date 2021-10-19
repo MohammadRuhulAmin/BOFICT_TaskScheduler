@@ -28,7 +28,7 @@
             </thead>
             @for ($i = 0;$i<count($combineAllInformation_today);$i++)
                 <tr>
-                    <td>{{$combineAllInformation_today[$i]['dayName']}}</td>
+                    <td width='10%'>{{$combineAllInformation_today[$i]['dayName']}}</td>
                     <td>{{$combineAllInformation_today[$i]['taskList']['date']}}</td>
                     <td><img width="64px" src="{{url('storage/'.$combineAllInformation_today[$i]['employeeDetails']['image'])}}"/></td>
                     <td>{{$combineAllInformation_today[$i]['employeeDetails']['name']}}</td>
@@ -62,7 +62,7 @@
             </thead>
             @for ($i = 0;$i<count($combineAllInformation_tomorrow);$i++)
                 <tr>
-                    <td>{{$combineAllInformation_tomorrow[$i]['dayName']}}</td>
+                    <td width='10%'>{{$combineAllInformation_tomorrow[$i]['dayName']}}</td>
                     <td>{{$combineAllInformation_tomorrow[$i]['taskList']['date']}}</td>
                     <td><img width="64px" src="{{url('storage/'.$combineAllInformation_tomorrow[$i]['employeeDetails']['image'])}}"/></td>
                     <td>{{$combineAllInformation_tomorrow[$i]['employeeDetails']['name']}}</td>
@@ -97,7 +97,7 @@
             </thead>
             @for ($i = 0;$i<count($combineAllInformation_yesterday);$i++)
                 <tr>
-                    <td>{{$combineAllInformation_yesterday[$i]['dayName']}}</td>
+                    <td width='10%'>{{$combineAllInformation_yesterday[$i]['dayName'] }}</td>
                     <td>{{$combineAllInformation_yesterday[$i]['taskList']['date']}}</td>
                     <td><img width="64px" src="{{url('storage/'.$combineAllInformation_yesterday[$i]['employeeDetails']['image'])}}"/></td>
                     <td>{{$combineAllInformation_yesterday[$i]['employeeDetails']['name']}}</td>

@@ -115,6 +115,7 @@ class UserViewDashboardController extends Controller
            ];
        }
        //end
+
        // yesterday data
        $yesterdayDate = Carbon::yesterday()->format('Y-m-d');
        $yesterdayTaskList = Assigntask::where(['date' =>$yesterdayDate])->orderBy('created_at','DESC')->get();

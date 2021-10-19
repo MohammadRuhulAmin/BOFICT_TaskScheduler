@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\SearchEmployeeTaskController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\UserViewDashboardController;
-
+use App\Http\Controllers\Admin\NoticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +46,14 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/admin/search-task/',[SearchEmployeeTaskController::class,'employeeSearchTaskResult'])->name('search.sendRequest');
     Route::delete('/admin/search-task/{id}',[SearchEmployeeTaskController::class,'deleteTask']);
     Route::post('/admin/search-task/update/{id}',[SearchEmployeeTaskController::class,'updateTaskInformation']);
+
+    // Route for Notice 
+    Route::resource('notices',NoticeController::class);
   });
 
 Route::get('/user/logout',[CommonTaskController::class,'logout'])->name('commonTask.logout');
 Route::get('/Dashboard/weekley-dashboard',[UserViewDashboardController::class,'weekEmployeeTask']);
 Route::get('/Dashboard/today-tomorrow-dashboard',[UserViewDashboardController::class,'todayTomorrowYesterdayTask']);
+
+
 

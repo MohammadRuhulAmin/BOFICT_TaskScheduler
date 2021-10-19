@@ -1,10 +1,5 @@
 
-<script>
-    
-    
-    
-    
-    
+<script> 
     function clearError(){
             $('#fromDateError').text('')
             $('#toDateError').text('')
@@ -128,11 +123,11 @@
      window.xTask = task 
      window.xDate = date 
      window.xShift = shift 
-     window.xLocation = location 
+     window.xLocation = location
      window.xStartTime = startTime 
      window.xEndTime = endTime
        
-    //   $(document).ready(function(){
+    
         $('#selectEmployeeTaskLocation').val(location)
         $('#selectEmployeeName').val(employeeName)
         $('#selectEmployeeShift').val(shift)
@@ -140,10 +135,6 @@
         $('#date_field').val(date)
         $('#startTime_field').val(startTime)
         $('#endTime_field').val(endTime)
-     
-     // })
-       
-     
    })
   
   })
@@ -176,15 +167,15 @@
             type:"POST",
             dataType:"json",
             data:{
-                _token:_token , 
-                employeeName:employeeName,
+                _token:_token,
+                employeeName:employeeName, 
                 task:task,
                 date:date,
                 shift:shift,
                 location:location,
                 startTime:startTime,
                 endTime:endTime,
-                
+
             },
             url:"/admin/search-task/update/" +id, 
             success:function(response){
@@ -205,13 +196,6 @@
             }
         })
   }
- 
-  
-   
- 
-   
-
-   
 </script>
  
   <!-- Modal -->

@@ -50,4 +50,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 Route::get('/user/logout',[CommonTaskController::class,'logout'])->name('commonTask.logout');
 Route::get('/Dashboard/weekley-dashboard',[UserViewDashboardController::class,'weekEmployeeTask']);
+Route::get('/Dashboard/today-tomorrow-dashboard',[UserViewDashboardController::class,'todayTomorrowYesterdayTask']);
 

@@ -1,15 +1,6 @@
 
 <script>
-    //   var currentRow_global = ""
-    //   var id_global = ""
-    //   var employeeName_global = ""
-    //   var task_global = ""
-    //   var date_global = ""
-    //   var shift_global = ""
-    //   var location_global = "" 
-    //   var startTime_global = ""
-    //   var endTime_global =""
-    //   var totalTime_global =""
+    
     
     
     
@@ -116,7 +107,7 @@
    }
    
    // Edit Task Information 
-  
+
   $(document).ready(function(){
     // clearAppendData()
     $('#taskTableInformation').on('click','.EditButton',function(){
@@ -132,13 +123,25 @@
      var endTime = currentRow.find("td:eq(7)").text()
      var totalTime = currentRow.find("td:eq(8)").text()
 
-      $('#employeeName_field').append('<option>'+ employeeName +'</option>');
-      $('#location_field').val(location)
-      $('#date_field').val(date)
-      $('#shift_field').append('<option>'+ shift +'</option>')
-      $('#startTime_field').val(startTime)
-      $('#endTime_field').val(endTime)
-      $('#location_field').append('<option>'+ location +'</option>');
+     window.xId = id
+     window.xEmployeeName = employeeName
+     window.xTask = task 
+     window.xDate = date 
+     window.xShift = shift 
+     window.xLocation = location 
+     window.xStartTime = startTime 
+     window.xEndTime = endTime
+       
+    //   $(document).ready(function(){
+        $('#selectEmployeeTaskLocation').val(location)
+        $('#selectEmployeeName').val(employeeName)
+        $('#selectEmployeeShift').val(shift)
+        $('#selectEmployeeTask').val(task)
+        $('#date_field').val(date)
+        $('#startTime_field').val(startTime)
+        $('#endTime_field').val(endTime)
+     
+     // })
        
      
    })
@@ -147,26 +150,28 @@
 
   // clear append data 
   function clearAppendData(){
-    $('#employeeName_field').empty();
-      $('#location_field').empty()
       $('#date_field').empty()
-      $('#shift_field').empty()
       $('#startTime_field').empty()
       $('#endTime_field').empty()
-      $('#location_field').empty()
   }
   // update task infromation 
   function updateTaskInformation(){
-        var id = id
-        console.log(id)
-        var employeeName = employeeName
-        var task = task
-        var date = date
-        var shift = shift
-        var location = location
-        var startTime = startTime
-        var endTime = endTime
-        let _token   = $('meta[name="csrf-token"]').attr('content');
+        var id = window.xId
+        var employeeName =  $('#selectEmployeeName').val()
+        var task = $('#selectEmployeeTask').val() 
+        var date = $('#date_field').val()
+        var shift = $('#selectEmployeeShift').val()
+        var location = $('#selectEmployeeTaskLocation').val()
+        var startTime = $('#startTime_field').val()
+        var endTime = $('#endTime_field').val()
+        console.log(employeeName)
+        console.log(task)
+        console.log(date)
+        console.log(shift)
+        console.log(location)
+        console.log(startTime)
+        console.log(endTime)
+        let _token   = $('meta[name="csrf-token"]').attr('content')
         $.ajax({
             type:"POST",
             dataType:"json",
@@ -183,7 +188,6 @@
             },
             url:"/admin/search-task/update/" +id, 
             success:function(response){
-                console.log(id)
                 clearAppendData()
                 searchEmployeeTaskInformation()
                 console.log(response);
@@ -222,14 +226,13 @@
             </button>
         </div>
         <div class="modal-body">
-           
            <div class="form-group">
                <div class="row">
                     <div class="col-sm-6">
                         <label class="form-control">Select Date </label>
                     </div>
                     <div class="col-sm-6">
-                        <input type="date" id="date_field" class="form-control">
+                        <input type="date" value="" id="date_field" class="form-control">
                     </div>
                </div>
            </div>
@@ -240,27 +243,39 @@
                         <label class="form-control"> Employee </label>
                     </div>
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option id="employeeName_field"></option>
+                        <select class="form-control" id="selectEmployeeName">
+                            {{-- <option id="employeeName_field"></option> --}}
                             @foreach ($employees as  $employee)
-                                <option>{{ $employee->name }}</option>
+                                <option value="{{$employee->name}}">{{ $employee->name }}</option>
                             @endforeach
                         </select>
                     </div>
                </div>
-                
-                
            </div>
            <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label class="form-control">Select Location</label>
+                        <label class="form-control">Select Task</label>
                     </div>
                     <div class="col-sm-6">
-                        <select class="form-control">
-                            <option id="location_field"></option>
-                            <option>Factory</option>
-                            <option>NOC</option>
+                        <select class="form-control" id="selectEmployeeTask">
+                            @foreach ($tasksList as $task)
+                                <option value="{{$task->taskName}}">{{$task->taskName}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+           </div>
+           <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="form-control"> Select Location  </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" id="selectEmployeeTaskLocation">
+                            {{-- <option id="location_field"></option> --}}
+                            <option value="Factory">Factory</option>
+                            <option value="NOC">NOC</option>
                         </select>
                     </div>
                 </div>
@@ -271,10 +286,10 @@
                     <label class="form-control" >Select Shift</label>
                 </div>
                 <div class="col-sm-6">
-                    <select class="form-control"  >
-                        <option id="shift_field"></option>
-                        <option>OT-1</option>
-                        <option>OT-2</option>
+                    <select class="form-control" id="selectEmployeeShift" >
+                        {{-- <option id="shift_field"></option> --}}
+                        <option value="OT-1">OT-1</option>
+                        <option value="OT-2">OT-2</option>
                     </select>
                 </div>
             </div>
@@ -285,7 +300,7 @@
                     <label class="form-control"> In Time  </label>
                 </div>
                 <div class="col-sm-6">
-                    <input type="time" id="startTime_field" class="form-control">
+                    <input type="time" value="" id="startTime_field" class="form-control">
                 </div>
              </div>
              <div class="row">
@@ -293,7 +308,7 @@
                     <label class="form-control"> Out Time  </label>
                 </div>
                 <div class="col-sm-6">
-                    <input type="time" id="endTime_field" class="form-control">
+                    <input type="time" value=`${window.startTime}` id="endTime_field" class="form-control">
                 </div>
              </div>
            

@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Employee;
 use App\Models\Admin\Assigntask;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use App\Models\Admin\Task;
+use DateTime;
 class SearchEmployeeTaskController extends Controller
 {
     public function searchindex(){
-        $employees = Employee::all();
-        return view('admin.searchs.searchIndex',compact('employees'));
+        $employees = Employee::orderby('created_at','DESC')->get();
+        $tasksList = Task::orderby('created_at','DESC')->get();
+        return view('admin.searchs.searchIndex',compact('employees','tasksList'));
     }
+
     public function employeeSearchTaskResult(Request $request){
         $employeeName = $request->employeeName;
         $fromDate  = $request->fromDate;
@@ -60,8 +63,25 @@ class SearchEmployeeTaskController extends Controller
         return response()->json($id);
     }
 
-    public function updateTaskInformation($id){
+    public function updateTaskInformation(Request $request,$id){
         $TaskDetails = Assigntask::findOrFail($id);
+        $TaskDetails->employeeName = $request->employeeName;
+        $TaskDetails->task = $request->task;
+        $TaskDetails->date = $request->date;
+        $TaskDetails->location = $request->location;
+        $TaskDetails->shift = $request->shift;
+        $TaskDetails->startTime = $request->startTime;
+        $TaskDetails->endTime = $request->endTime;
+        
+        // time calculation 
+        $tempStartTime = new DateTime($request->startTime);
+        $tempEndTime   = new DateTime($request->endTime);
+        $timeInterval  = $tempStartTime->diff($tempEndTime);
+        $finalTimeInterval = $timeInterval->format('%h').':'.$timeInterval->format('%i').':'.$timeInterval->format('%s');
+        $TaskDetails->totalTime = $finalTimeInterval;
+        $TaskDetails->save();
+        //end time calculation 
+
         return response()->json($TaskDetails);
     }
 

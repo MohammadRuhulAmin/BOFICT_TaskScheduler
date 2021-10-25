@@ -30,8 +30,8 @@ class DashboardController extends Controller
                 'dayName' => Carbon::createFromFormat('Y-m-d', $weeklyTaskList_shift_1[$i]->date)->format('l'),
                 'date'=> $weeklyTaskList_shift_1[$i]->date,                    
                 'employeeName' =>$weeklyTaskList_shift_1[$i]->employeeName,
-                'employeeImage' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_1[$i]->employeeName])->first('image'),
-                'employeeDesignation' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_1[$i]->employeeName])->first('designation'),
+                'employeeImage' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_1[$i]->employeeName])->first("image"),
+                'employeeDesignation' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_1[$i]->employeeName])->first("designation"),
                 'employeeTask' =>$weeklyTaskList_shift_1[$i]->task,
                 'startTime' =>$weeklyTaskList_shift_1[$i]->startTime,
                 'endTime' =>$weeklyTaskList_shift_1[$i]->endTime,
@@ -39,6 +39,7 @@ class DashboardController extends Controller
                 'location'=>$weeklyTaskList_shift_1[$i]->location,
             ];
         }
+        
         //first Shift end 
         //Second Shift Start 
         $combineAllWeeklyInformation_shift_2 = [];
@@ -48,8 +49,8 @@ class DashboardController extends Controller
                 'dayName' => Carbon::createFromFormat('Y-m-d', $weeklyTaskList_shift_2[$i]->date)->format('l'),
                 'date'=> $weeklyTaskList_shift_2[$i]->date,                    
                 'employeeName' =>$weeklyTaskList_shift_2[$i]->employeeName,
-                'employeeImage' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_2[$i]->employeeName])->first('image'),
-                'employeeDesignation' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_2[$i]->employeeName])->first('designation'),
+                'employeeImage' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_2[$i]->employeeName])->first("image"),
+                'employeeDesignation' =>DB::table('employees')->where(['name'=>$weeklyTaskList_shift_2[$i]->employeeName])->first("designation"),
                 'employeeTask' =>$weeklyTaskList_shift_2[$i]->task,
                 'startTime' =>$weeklyTaskList_shift_2[$i]->startTime,
                 'endTime' =>$weeklyTaskList_shift_2[$i]->endTime,
@@ -57,10 +58,14 @@ class DashboardController extends Controller
                 'location'=>$weeklyTaskList_shift_2[$i]->location,
             ];
         }
+        
         //Second Shift end 
         return view('admin.Dashboard.weeklyEmployeeTask',compact('combineAllWeeklyInformation_shift_1','combineAllWeeklyInformation_shift_2'));
     }
+
+
     public function todayEmployeeTask(){
+
         //return  $dt->format('Y-m-d H:i:s');
         $date  = new DateTime();
         $todayDate =  $date->format('Y-m-d');
@@ -72,15 +77,13 @@ class DashboardController extends Controller
             $employeeDetails = Employee::where(['name'=>$employeeName])->first();
             $taskDetails     = Task::where(['taskName' =>$taskName])->first();
             $combineAllInformation[$i] = [
+                
                 'taskList' =>$taskList[$i],
                 'employeeDetails' =>$employeeDetails,
                 'taskDetails' => $taskDetails,
             ];
         }
-        //return count($combineAllInformation);
-        //return $combineAllInformation[0]['taskList']['employeeName'];
+
         return view('admin.Dashboard.todayEmployeeTask')->with(['combineAllInformation'=>$combineAllInformation]);
     }
 }
-
-

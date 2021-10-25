@@ -37,6 +37,52 @@
        })
     }
     showAllNotices()
+    // add new Notice 
+    function addNewNotice(){
+        var noticeTitle = $('#noticeTitle').val()
+        var noticeDescription = $('#noticeDescription').val()
+        var isActive = $('#isActive').val()
+        let _token   = $('meta[name="csrf-token"]').attr('content')
+        $.ajax({
+            type:"POST",
+            dataType:"json",
+            url:"{{route('notices.store')}}",
+            data:{
+                noticeTitle:noticeTitle, 
+                noticeDescription:noticeDescription,
+                isActive:isActive,
+                _token:_token,
+            },
+            success:function(response){
+                console.log(response)
+                showAllNotices()
+                Swal.fire({
+                    toast:true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'New Notice is Created Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            },
+            error:function(error){
+                 console.log(error)
+                    $('#noticeTitleError').text('');
+                    $('#noticeDescriptionError').text('')
+                    if($('#noticeTitle').val() == ""){
+                        $('#noticeTitleError').text(error.responseJSON.errors.noticeTitle);
+                    }
+                    if($('#noticeDescription').val() == ""){
+                        $('#noticeDescriptionError').text(error.responseJSON.errors.noticeDescription);
+                    }
+                   
+            }
+        })
+        
+
+
+
+    }
 
 
 

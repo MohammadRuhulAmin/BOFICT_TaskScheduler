@@ -37,7 +37,17 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'noticeTitle'=>'required',
+            'noticeDescription'=>'required'
+        ]);
+       
+        $notice = new Notice();
+        $notice->noticeTitle = $request->noticeTitle;
+        $notice->noticeDescription = $request->noticeDescription;
+        $notice->isActive = $request->isActive;
+        $notice->save();
+        return response()->json($notice);
     }
 
     /**

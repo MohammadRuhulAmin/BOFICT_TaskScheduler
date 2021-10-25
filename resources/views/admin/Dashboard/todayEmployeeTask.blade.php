@@ -20,7 +20,7 @@
   </div>
   <!-- /.content-header -->
   <!-- Main content -->
-  <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories (ICT CELL)   </marquee></h2>
+  <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories (ICT CELL) // </marquee></h2>
   <div class="card m-3">
     <div class="card-header">
         <h3 align="center"> {{ date('Y-m-d   H:i:s') }}  Work Flow   </h3>

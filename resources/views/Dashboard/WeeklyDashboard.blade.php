@@ -11,7 +11,7 @@
 <body>
 
 
-  <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories ( ICT CELL )  </marquee></h2>
+  <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories ( ICT CELL )   </marquee></h2>
   <h3 align="center">Weekly Task Schedule</h3>
   <div class="card-header"><h1  class="card-title text-center"> Shift - 1<sup>st</sup> </h1></div>
   <table class="table table-sm table-striped m-3">

@@ -17,7 +17,7 @@ class CreateNoticesTable extends Migration
             $table->id();
             $table->string('noticeTitle',100)->nullable();
             $table->longText('noticeDescription')->nullable();
-            $table->boolean('isActive')->default(1);
+            $table->string('isActive')->nullable();
             $table->timestamps();
         });
     }

@@ -10,12 +10,14 @@ use DateTime;
 use DB;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use App\Models\Admin\Notice;
 
 class UserViewDashboardController extends Controller
 {
     //Vehicle::find(3)->value('register_number');
 
     public function weekEmployeeTask(){
+        $NewNotice = Notice::orderBy('created_at','DESC')->first();
         $now = Carbon::now();
         $weekStartDate = $now->startOfWeek(Carbon::SATURDAY)->format('Y-m-d'); //H:i
         $weekEndDate = $now->endOfWeek(Carbon::FRIDAY)->format('Y-m-d');
@@ -39,6 +41,7 @@ class UserViewDashboardController extends Controller
                 'location'=>$weeklyTaskList_shift_1[$i]->location,
             ];
         }
+        
         //first Shift end 
         //Second Shift Start 
         $combineAllWeeklyInformation_shift_2 = [];
@@ -58,10 +61,12 @@ class UserViewDashboardController extends Controller
             ];
         }
         //Second Shift end 
-        return view('Dashboard.WeeklyDashboard',compact('combineAllWeeklyInformation_shift_1','combineAllWeeklyInformation_shift_2'));
+        
+        return view('Dashboard.WeeklyDashboard',compact('combineAllWeeklyInformation_shift_1','combineAllWeeklyInformation_shift_2','NewNotice'));
     }
     public function todayEmployeeTask(){
         //return  $dt->format('Y-m-d H:i:s'); 
+        $NewNotice = Notice::orderBy('created_at','DESC')->first();
         $date  = new DateTime();
         $todayDate =  $date->format('Y-m-d');
         $taskList = Assigntask::where(['date' =>$todayDate])->orderBy('created_at','DESC')->get();
@@ -78,10 +83,11 @@ class UserViewDashboardController extends Controller
             ];
         }
        
-        return view('admin.Dashboard.todayEmployeeTask')->with(['combineAllInformation'=>$combineAllInformation]);
+        return view('admin.Dashboard.todayEmployeeTask')->with(['combineAllInformation'=>$combineAllInformation,'NewNotice'=>$NewNotice]);
     }
     public function todayTomorrowYesterdayTask(){
        //Today data
+        $NewNotice = Notice::orderBy('created_at','DESC')->first();
         $todayDate = Carbon::now()->format('Y-m-d');
         $todayTaskList = Assigntask::where(['date' =>$todayDate])->orderBy('created_at','DESC')->get();
         $combineAllInformation_today = [];
@@ -134,7 +140,83 @@ class UserViewDashboardController extends Controller
        }
        //end
     //    return $combineAllInformation_today;
-       return view('Dashboard.yesterdayTodayTomorrowDashboard',compact('combineAllInformation_today','combineAllInformation_yesterday','combineAllInformation_tomorrow'));
+       return view('Dashboard.yesterdayTodayTomorrowDashboard',compact('combineAllInformation_today','combineAllInformation_yesterday','combineAllInformation_tomorrow','NewNotice'));
+    }
+
+    public function todayTomorrowTaskByLocation(){
+        //Today Employees
+            // for factory
+        $todayDate = Carbon::now()->format('Y-m-d');
+        $todayTaskList_Factory = Assigntask::where(['date' =>$todayDate,'location'=>'Factory'])->orderBy('created_at','DESC')->get();
+        $combineAllInformation_today_Factory = [];
+        for($i = 0;$i<count($todayTaskList_Factory);$i++){
+            $employeeName = $todayTaskList_Factory[$i]->employeeName;
+            $taskName = $todayTaskList_Factory[$i]->task;
+            $employeeDetails = Employee::where(['name'=>$employeeName])->first();
+            $taskDetails     = Task::where(['taskName' =>$taskName])->first();
+            $combineAllInformation_today_Factory[$i] = [
+                'dayName' => Carbon::createFromFormat('Y-m-d', $todayTaskList_Factory[$i]->date)->format('l'),
+                'taskList' =>$todayTaskList_Factory[$i],
+                'employeeDetails' =>$employeeDetails,
+                'taskDetails' => $taskDetails,
+            ];
+        }
+            // for NOC
+        $todayDate = Carbon::now()->format('Y-m-d');
+        $todayTaskList_NOC = Assigntask::where(['date' =>$todayDate,'location'=>'NOC'])->orderBy('created_at','DESC')->get();
+        $combineAllInformation_today_NOC = [];
+        for($i = 0;$i<count($todayTaskList_NOC);$i++){
+            $employeeName = $todayTaskList_NOC[$i]->employeeName;
+            $taskName = $todayTaskList_NOC[$i]->task;
+            $employeeDetails = Employee::where(['name'=>$employeeName])->first();
+            $taskDetails     = Task::where(['taskName' =>$taskName])->first();
+            $combineAllInformation_today_NOC[$i] = [
+                'dayName' => Carbon::createFromFormat('Y-m-d', $todayTaskList_NOC[$i]->date)->format('l'),
+                'taskList' =>$todayTaskList_NOC[$i],
+                'employeeDetails' =>$employeeDetails,
+                'taskDetails' => $taskDetails,
+            ];
+        }
+        //tomorrow Employees
+
+        //for NOC 
+        $tomorrowDate = Carbon::tomorrow()->format('Y-m-d');
+       $tomorrowTaskList_NOC = Assigntask::where(['date' =>$tomorrowDate,'Location'=>'NOC'])->orderBy('created_at','DESC')->get();
+       
+       $combineAllInformation_tomorrow_NOC = [];
+       for($i = 0;$i<count($tomorrowTaskList_NOC);$i++){
+           $employeeName = $tomorrowTaskList_NOC[$i]->employeeName;
+           $taskName = $tomorrowTaskList_NOC[$i]->task;
+           $employeeDetails = Employee::where(['name'=>$employeeName])->first();
+           $taskDetails     = Task::where(['taskName' =>$taskName])->first();
+           $combineAllInformation_tomorrow_NOC[$i] = [
+               'dayName' => Carbon::createFromFormat('Y-m-d', $tomorrowTaskList_NOC[$i]->date)->format('l'),
+               'taskList' =>$tomorrowTaskList_NOC[$i],
+               'employeeDetails' =>$employeeDetails,
+               'taskDetails' => $taskDetails,
+           ];
+       }
+      
+       // for factory
+      
+       $tomorrowTaskList_Factory = Assigntask::where(['date' =>$tomorrowDate,'Location'=>'Factory'])->orderBy('created_at','DESC')->get();
+   
+       $combineAllInformation_tomorrow_Factory = [];
+       for($i = 0;$i<count($tomorrowTaskList_Factory);$i++){
+           $employeeName = $tomorrowTaskList_Factory[$i]->employeeName;
+           $taskName = $tomorrowTaskList_Factory[$i]->task;
+           $employeeDetails = Employee::where(['name'=>$employeeName])->first();
+           $taskDetails     = Task::where(['taskName' =>$taskName])->first();
+           $combineAllInformation_tomorrow_Factory[$i] = [
+               'dayName' => Carbon::createFromFormat('Y-m-d', $tomorrowTaskList_Factory[$i]->date)->format('l'),
+               'taskList' =>$tomorrowTaskList_Factory[$i],
+               'employeeDetails' =>$employeeDetails,
+               'taskDetails' => $taskDetails,
+           ];
+       }
+        
+        return view('Dashboard.TodayAndTomorrow',compact('combineAllInformation_today_NOC','combineAllInformation_today_Factory','combineAllInformation_tomorrow_NOC','combineAllInformation_tomorrow_Factory'));
+ 
     }
 }
 

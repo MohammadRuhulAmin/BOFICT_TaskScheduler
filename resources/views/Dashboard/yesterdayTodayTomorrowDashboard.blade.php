@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories ( ICT CELL )  </marquee></h2>
+  <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories ( ICT CELL ) //  {{$NewNotice->noticeDescription}}   </marquee></h2>
   <div class="card">
     <div class="card-header"><h3 align="center">Today Task List </h3></div>
     <div class="card-body">
@@ -41,7 +41,6 @@
                 </tr>
             @endfor
         </table>
-        
     </div>
   </div>
   <div class="card">

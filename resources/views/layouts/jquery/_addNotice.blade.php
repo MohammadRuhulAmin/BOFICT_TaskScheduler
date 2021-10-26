@@ -27,7 +27,6 @@
                     noticeList += "</tr>";
                 })
                 $('#noticeTableBody').html(noticeList)
-
                //end
                
            },
@@ -55,6 +54,8 @@
             },
             success:function(response){
                 console.log(response)
+                $('#noticeTitle').val('');
+                $('#noticeDescription').val('')
                 showAllNotices()
                 Swal.fire({
                     toast:true,
@@ -78,10 +79,118 @@
                    
             }
         })
-        
+    }
 
+    // delete Notice 
+    function deleteNotice(id){
+        let _token   = $('meta[name="csrf-token"]').attr('content');
+        Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This Notice will be deleted! ",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type:"DELETE",
+                            dataType:"json",
+                            data:{
+                                _token: _token 
+                            },
+                            url:"/admin/notices/"+ id,
+                            success:function(response){
+                                console.log(response)
+                               showAllNotices()
+                                
+                            },
+                            error:function(error){
+                                console.log(error)
+                            }
+                        })
+                        Swal.fire(
+                        'Deleted!',
+                        'Notice is Deleted .',
+                        'success'
+                        )
+                    }
+                    
+                })
+                      
 
+    }
 
+    // Edit Notice
+    function editNoticeInformation(id){
+        $.ajax({
+        type:"GET",
+        dataType:"json",
+        url:"/admin/notices/" + id + "/edit",
+        success:function(data){
+            console.log(data);
+            $('#id').val(data.id)
+            $('#noticeTitle').val(data.noticeTitle)
+            $('#noticeDescription').val(data.noticeDescription)
+            $('#noticeId').val(data.id)
+            $('#addNoticeButton').hide()
+            $('#updateNoticeButton').show()
+            $('#labelNoticeAdd').hide()
+            $('#labelNoticeUpdate').show()
+        }
+    })
+    }
+    // update notice 
+    function updateNoticeInformation(){
+        var id = $('#noticeId').val()
+        var noticeTitle = $('#noticeTitle').val()
+        var noticeDescription = $('#noticeDescription').val()
+        let _token   = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:"PUT",
+            dataType:"json",
+            data:{
+                _token:_token , 
+                noticeTitle:noticeTitle,
+                noticeDescription:noticeDescription,
+            },
+            url:"/admin/notices/"+id,
+            success:function(response){
+                $('#noticeTitleError').text('')
+                $('#noticeDescriptionError').text('')
+                $('#noticeTitle').val('');
+                $('#noticeDescription').val('');
+                $('#noticeId').val('');
+                $('#addNoticeButton').show()
+                $('#updateNoticeButton').hide()
+                $('#labelNoticeAdd').show()
+                $('#labelNoticeUpdate').hide()
+                showAllNotices()
+                console.log(response);
+                Swal.fire({
+                    toast:true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Notice Is Updated  Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            },
+            error:function(error){
+                console.log(error)
+                    $('#noticeTitleError').text('')
+                    $('#noticeDescriptionError').text('')
+                  
+                    if($('#noticeTitleError').val() == ""){
+                        $('#noticeTitleError').text(error.responseJSON.errors.noticeTitle);
+                    }
+                    if($('#noticeDescriptionError').val() == ""){
+                        $('#noticeDescriptionError').text(error.responseJSON.errors.noticeDescription);
+                    }
+                    
+            }
+        })
     }
 
 

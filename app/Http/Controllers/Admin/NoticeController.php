@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Notice;
 
+
 class NoticeController extends Controller
 {
     /**
@@ -69,7 +70,8 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $notice = Notice::findOrFail($id);
+        return response()->json($notice);
     }
 
     /**
@@ -81,7 +83,16 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'noticeTitle' =>'required',
+            'noticeDescription' =>'required',
+            
+        ]);
+        $notice = Notice::findOrFail($id);
+        $notice->noticeTitle = $request->noticeTitle;
+        $notice->noticeDescription = $request->noticeDescription;
+        $notice->save();
+        return response()->json($notice);
     }
 
     /**
@@ -92,6 +103,8 @@ class NoticeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Notice::findOrFail($id);
+        $data->delete();
+        return response()->json($data);
     }
 }

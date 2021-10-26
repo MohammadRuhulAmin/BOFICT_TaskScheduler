@@ -115,10 +115,10 @@
             }
         })
     }
+
     showAllEmployeeList();
 
-    // function edit employee information 
-
+    // function edit employee information
     function editEmployeeInformation(id){
         $.ajax({
         type:"GET",

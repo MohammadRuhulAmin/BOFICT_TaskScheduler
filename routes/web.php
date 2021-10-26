@@ -39,6 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function(){
      Route::resource('employees',EmployeeController::class);
      Route::resource('tasks',TaskScheduleController::class);
      Route::resource('assigntasks',TaskController::class);
+      // Route for Notice 
+    Route::resource('notices',NoticeController::class);
      Route::get('assigntasks/search-employee-work-details',[TaskController::class,'employeeTaskListViewPage'])->name('assigntasks.viewEmplyTaskSearch');
       });
       // Route Search Employee Information controller 
@@ -47,8 +49,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::delete('/admin/search-task/{id}',[SearchEmployeeTaskController::class,'deleteTask']);
     Route::post('/admin/search-task/update/{id}',[SearchEmployeeTaskController::class,'updateTaskInformation']);
 
-    // Route for Notice 
-    Route::resource('notices',NoticeController::class);
+   
   });
 
   

@@ -36,6 +36,7 @@
                 <th> Out </th>
                 <th> Total Time </th>
            </thead>
+           
            <tbody>
               @for ($i = 0;$i<count($combineAllWeeklyInformation_shift_1);$i++)
               <tr>
@@ -88,8 +89,6 @@
              <td>{{$combineAllWeeklyInformation_shift_2[$i]['totalTime']}}</td>
          </tr>
            @endfor
-                
-            
         </tbody>
     </table>
      

@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
 <div class="content-header">
     <div class="container-fluid">
@@ -17,7 +16,6 @@
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
-
   <!-- /.content-header -->
   <!-- Main content -->
         <div class="row m-3 row-sm">
@@ -38,6 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody id="noticeTableBody">
+
                             </tbody>
                         </table>
                     </div>
@@ -53,14 +52,15 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Notice Title  <span class="text-danger"> * </span> </label>
-                            <input type="text"  class="form-control"  id="noticeTitle" />
+                            <input type="text"  class="form-control"  id="noticeTitle"/>
                             <span class="text-danger" id="noticeTitleError"></span>
                         </div>
                         <div class="form-group">
                             <label>Notice Details  <span class="text-danger"> *</span> </label>
                             <input type="text" class="form-control"id="noticeDescription"/>
-                            <span class="text-danger" id="noticeDescriptionError">  </span>
+                            <span class="text-danger" id="noticeDescriptionError"></span>
                         </div>
+
                         <div class="form-group">
                             <table class="table table-striped">
                                 <tr>
@@ -72,11 +72,12 @@
                                 </tr>
                             </table>
                         </div>
-                         <input type="hidden"  id="id">
-                        <div>
-                            <button type="submit" class="btn btn-primary" onclick="addNewNotice()" id="addNoticeButton"> Add Notice </button>
-                            <button type="submit" class="btn btn-success" onclick="updateNoticeInformation()" id="updateNoticeButton" > Update Notice </button>
-                        </div>
+                        
+                         <input type="hidden"  id="noticeId">
+                            <div>
+                                <button type="submit" class="btn btn-primary" onclick="addNewNotice()" id="addNoticeButton"> Add Notice </button>
+                                <button type="submit" class="btn btn-success" onclick="updateNoticeInformation()" id="updateNoticeButton" > Update Notice </button>
+                            </div>
                     </div>
                 </div>
               {{-- </form> --}}

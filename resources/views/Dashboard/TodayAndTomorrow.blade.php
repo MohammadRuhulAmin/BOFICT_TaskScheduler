@@ -14,9 +14,24 @@
       h2{
           font-size:40px;
       }
+      .clockStyle{
+          font-size: 80px;
+      }
   </style>
 </head>
 <body>
+    {{-- <div style="text-align:center">
+        <img src="{{public_path('bof-logo/bof-logo.png')}}" style = "width: 300px; height :300px"/>
+       
+        <br>
+    </div> --}}
+    <table>
+        <tr>
+            <td> <h2 style="color: red;"> <marquee behavior="" direction=""> Bangladesh Ordnance Factories ( ICT CELL )  Notice ::** {{$notice['noticeTitle']}} Details :: {{$notice['noticeDescription']}}  **</marquee></h2></td>
+            <td> <div id="clock" class="clockStyle"></div> </td>
+        </tr>
+    </table>
+   
 <div class="card m-3">
     <div class="row">
         <div class="col-sm-6 m-2">
@@ -546,6 +561,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+   setInterval('updateClock()', 1000);
+});
+    function updateClock (){
+         var currentTime = new Date ( );
+          var currentHours = currentTime.getHours ( );
+          var currentMinutes = currentTime.getMinutes ( );
+          var currentSeconds = currentTime.getSeconds ( );
+          // Pad the minutes and seconds with leading zeros, if  required     
+          currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+          currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+          // Choose either "AM" or "PM" as appropriate
+          var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+          // Convert the hours component to 12-hour format if needed
+          currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+          // Convert an hours component of "0" to "12"
+          currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+          // Compose the string for display  
+          var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+           $("#clock").html(currentTimeString);
+     }
+    </script>
 </body>
 </html>
 

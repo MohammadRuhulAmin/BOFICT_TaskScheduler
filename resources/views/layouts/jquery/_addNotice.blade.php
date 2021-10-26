@@ -1,6 +1,6 @@
 <script>
-   
-    
+    $('#addNoticeButton').show()
+    $('#updateNoticeButton').hide()
     $.ajaxSetup({
              headers:{
                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -80,7 +80,6 @@
             }
         })
     }
-
     // delete Notice 
     function deleteNotice(id){
         let _token   = $('meta[name="csrf-token"]').attr('content');
@@ -118,8 +117,6 @@
                     }
                     
                 })
-                      
-
     }
 
     // Edit Notice
@@ -181,19 +178,13 @@
                 console.log(error)
                     $('#noticeTitleError').text('')
                     $('#noticeDescriptionError').text('')
-                  
                     if($('#noticeTitleError').val() == ""){
                         $('#noticeTitleError').text(error.responseJSON.errors.noticeTitle);
                     }
                     if($('#noticeDescriptionError').val() == ""){
                         $('#noticeDescriptionError').text(error.responseJSON.errors.noticeDescription);
                     }
-                    
             }
         })
     }
-
-
-
-
 </script>
